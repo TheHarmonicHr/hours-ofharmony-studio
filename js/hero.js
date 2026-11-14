@@ -46,6 +46,7 @@
     let particles = [];
     let frameCount = 0;
     let mouse = { x: -1000, y: -1000 };
+    let stillMoving = true;
 
     window.addEventListener('mousemove', (e) => {
       mouse.x = e.clientX;
@@ -137,8 +138,9 @@
     function animate() {
       frameCount++;
 
-      ctx.fillStyle = 'rgba(241, 244, 238, 0.1)';
+      ctx.fillStyle = stillMoving ? 'rgba(241, 244, 238, 0.1)' : 'rgb(241, 244, 238)';
       ctx.fillRect(0, 0, width, height);
+      let movingThisFrame = false;
 
       // Each particle picks its own color below, based on how fast it's moving
       ctx.lineWidth = 1.5;
@@ -192,6 +194,7 @@
         p.vy *= 0.97;
 
         let speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+        if (speed > 0.3) movingThisFrame = true;
         if (speed > p.maxSpeed) {
           p.vx = (p.vx / speed) * p.maxSpeed;
           p.vy = (p.vy / speed) * p.maxSpeed;
@@ -219,7 +222,7 @@
         ctx.arc(p.x, p.y, 0.8, 0, Math.PI * 2);
         ctx.fill();
       }
-
+      stillMoving = movingThisFrame;
       requestAnimationFrame(animate);
     }
 
