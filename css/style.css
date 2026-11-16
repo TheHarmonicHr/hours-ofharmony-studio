@@ -1,3 +1,6 @@
+   :root {
+  --word-y: 0.42; /* where "harmony" sits, as a fraction of screen height */
+}
    body {
       margin: 0;
       padding: 0;
@@ -87,3 +90,23 @@
         gap: 1.5rem;
       }
     }
+    /* --- INTRO --- */
+.intro {
+  position: absolute;
+  z-index: 10;
+  left: max(24px, 8vw);
+  top: calc(var(--word-y) * 100% + min(9vw, 90px));
+  max-width: 38rem;
+  margin: 0;
+  font-family: "Exo 2", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  line-height: 1.5;
+  color: #1F4D2B;
+}
+
+.intro-note {
+  display: block;
+  margin-top: 0.25rem;
+  opacity: 0.7;
+}

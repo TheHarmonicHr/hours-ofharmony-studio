@@ -47,6 +47,7 @@
     let frameCount = 0;
     let mouse = { x: -1000, y: -1000 };
     let stillMoving = true;
+    let wordY = 0.42;
 
     window.addEventListener('mousemove', (e) => {
       mouse.x = e.clientX;
@@ -89,8 +90,8 @@
       memCtx.textAlign = 'left';
       memCtx.textBaseline = 'middle';
 
-      // Main word, nudged down slightly to make room for the top line
-      const mainY = TOP_LINE ? height / 2 + fontSize * 0.25 : height / 2;
+      // Vertical position of the word, as a fraction of screen height
+      const mainY = height * wordY;
       memCtx.fillText(MY_NAME, marginX, mainY);
 
       // Smaller top line, about 40% of the main size
